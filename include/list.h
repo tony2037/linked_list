@@ -13,6 +13,7 @@
  *     - prefetch() and rcu related functions
  * 3. add macro offsetof() and container_of
  */
+#define NULL ((void *)0)
 
 #ifndef LIST_H_
 #define LIST_H_ (1)
