@@ -25,22 +25,22 @@ void list_insert(struct listitem *entry, struct list_head *head) {
 }
 
 void list_remove_kth(struct list_head **head, const int k) {
-    struct list_head *sorted;
-    INIT_LIST_HEAD(sorted);
+    struct list_head sorted;
+    INIT_LIST_HEAD(&sorted);
     struct listitem *p = NULL;
     struct listitem *n = NULL;
     list_for_each_entry_safe(p, n, *head, list) {
         struct listitem *e = malloc(sizeof(struct listitem));
         e->i = p->i;
         INIT_LIST_HEAD(&e->list);
-        list_insert(e, sorted);
+        list_insert(e, &sorted);
     }
 
     size_t i = k;
     p = NULL;
     n = NULL;
     uint16_t target = 0; 
-    list_for_each_entry_safe(p, n, sorted, list) {
+    list_for_each_entry_safe(p, n, &sorted, list) {
         if(!i--) {
             target = p->i;
         }
