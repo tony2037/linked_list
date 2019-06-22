@@ -16,27 +16,21 @@ static inline int cmpint(const void *p1, const void *p2) {
     return *i1 - *i2;
 }
 
-void list_insert(struct listitem *entry, struct list_head *head) {
-    if (list_empty(head)) {
-        list_add(&entry->list, head);
+void list_insert(struct listitem *entry, struct list_head **head) {
+    if (list_empty(*head)) {
+        list_add(&entry->list, *head);
         return;
     }
 
     struct listitem *p = NULL;
-    struct list_head *insert = NULL;
-    list_for_each_entry(p, head, list) {
+    struct list_head *insert = *head;
+    list_for_each_entry(p, *head, list) {
         if (entry->i < p->i) {
             insert = &p->list;
             continue;
         }
     }
-    if (insert) {
-        list_add(&entry->list, insert);
-    }
-    else {
-        list_add_tail(&entry->list, head);
-        head = &entry->list;
-    }
+    list_add(&entry->list, insert);
 }
 
 void list_remove_kth(struct list_head **head, const int k) {
