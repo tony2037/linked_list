@@ -10,12 +10,6 @@ void display_list(struct list_head *head) {
     }
 }
 
-static inline int cmpint(const void *p1, const void *p2) {
-    const uint16_t *i1 = (const uint16_t *) p1;
-    const uint16_t *i2 = (const uint16_t *) p2;
-    return *i1 - *i2;
-}
-
 void list_insert(struct listitem *entry, struct list_head **head) {
     if (list_empty(*head)) {
         list_add(&entry->list, *head);
