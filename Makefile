@@ -3,13 +3,16 @@ CFLAGS = -g -Wall -O0
 
 INC = ./include
 
-OBJS = linked_list.o
+OBJS = linked_list.o main.o
 EXEC = main
 
-$(EXEC): main.c $(OBJS)
+$(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) -I $(INC) $^ -o $(EXEC)
 
-$(OBJS): linked_list.c linked_list.h
+linked_list.o : linked_list.c linked_list.h
+	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
+
+main.o: main.c
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
 .PHONY: clean

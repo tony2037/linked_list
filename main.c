@@ -1,8 +1,9 @@
 #include "list.h"
 
 #include "linked_list.h"
-/*
+
 int main(int argc, char **argv) {
+    /*
     struct list_head *head;
     INIT_LIST_HEAD(head);
 
@@ -13,5 +14,5 @@ int main(int argc, char **argv) {
         INIT_LIST_HEAD(&k->list);
         list_insert(k, head);
     }
+    */
 }
-*/
