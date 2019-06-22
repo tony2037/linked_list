@@ -8,3 +8,6 @@ OBJS = linked_list.o
 $(OBJS): linked_list.c linked_list.h
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@
 
+.PHONY: clean
+clean:
+	$(RM) *.o
