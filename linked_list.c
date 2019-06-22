@@ -1,6 +1,14 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "linked_list.h"
+
+void display_list(struct list_head *head) {
+    struct listitem *p = NULL;
+    list_for_each_entry(p, head, list) {
+        printf("%u\n", p->i);
+    }
+}
 
 static inline int cmpint(const void *p1, const void *p2) {
     const uint16_t *i1 = (const uint16_t *) p1;
@@ -15,13 +23,20 @@ void list_insert(struct listitem *entry, struct list_head *head) {
     }
 
     struct listitem *p = NULL;
+    struct list_head *insert = NULL;
     list_for_each_entry(p, head, list) {
-        if (cmpint((void *) &entry->i, (void *) &p->i)) {
-            list_add(&entry->list, &p->list);
-            return;
+        if (entry->i < p->i) {
+            insert = &p->list;
+            continue;
         }
     }
-    list_add_tail(&entry->list, head);
+    if (insert) {
+        list_add(&entry->list, insert);
+    }
+    else {
+        list_add_tail(&entry->list, head);
+        head = &entry->list;
+    }
 }
 
 void list_remove_kth(struct list_head **head, const int k) {
@@ -51,7 +66,7 @@ void list_remove_kth(struct list_head **head, const int k) {
     list_for_each_entry_safe(p, n, *head, list) {
         if(target == p->i) {
             if(&p->list == *head) {
-                *head = &p->list.next;
+                //*head = &p->list.next;
             }
             list_del(&p->list);
         }

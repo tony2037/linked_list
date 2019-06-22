@@ -14,4 +14,6 @@ int main(int argc, char **argv) {
         INIT_LIST_HEAD(&k->list);
         list_insert(k, &head);
     }
+
+    display_list(&head);
 }
