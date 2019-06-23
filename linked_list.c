@@ -28,4 +28,6 @@ void list_insert(struct listitem *entry, struct list_head **head) {
 }
 
 void list_remove_kth(struct list_head **head, const int k) {
+    struct listitem *i = container_of(*head, struct listitem, list);
+    printf("%u\n", i->i);
 }
