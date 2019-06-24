@@ -18,3 +18,5 @@ void display_list(struct list_head *head);
 int partition_right(struct list_head **head, const int right);
 
 int partition_left(struct list_head **head, const int left);
+
+void list_remove_kth_quick(struct list_head **head, const int k);
